@@ -73,3 +73,37 @@ def analyze_revenue_by_region(valid_records):
     print("\nRevenue by Region:")
     for region, total in revenue_by_region.items():
        print(f"{region}: ₹{total:,.2f}")
+
+# Q2: Data Validation and Filtering
+def validate_and_filter(transactions, region=None, min_amount=None, max_amount=None):
+    valid_transactions = []
+    invalid_count = 0
+
+    for tx in transactions:
+        # Calculate transaction amount
+        amount = tx["Quantity"] * tx["UnitPrice"]
+
+        # Validation rules
+        if tx["Quantity"] <= 0 or tx["UnitPrice"] <= 0:
+            invalid_count += 1
+            continue
+
+        # Optional filters
+        if region and tx["Region"] != region:
+            continue
+
+        if min_amount and amount < min_amount:
+            continue
+
+        if max_amount and amount > max_amount:
+            continue
+
+        valid_transactions.append(tx)
+
+    summary = {
+        "total_input": len(transactions),
+        "invalid": invalid_count,
+        "final_count": len(valid_transactions)
+    }
+
+    return valid_transactions, invalid_count, summary
