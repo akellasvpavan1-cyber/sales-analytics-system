@@ -2,7 +2,8 @@ from utils.file_handler import read_sales_file
 from utils.data_processor import (
     clean_sales_data,
     analyze_revenue_by_region,
-    validate_and_filter
+    validate_and_filter,
+    calculate_total_revenue
 )
 
 def main():
@@ -15,6 +16,10 @@ def main():
 
     # Step 3: Analytics (Q1 bonus)
     analyze_revenue_by_region(valid_records)
+
+    # Optional: Total revenue (Q3 demo)
+    total_revenue = calculate_total_revenue(valid_records)
+    print(f"\nTotal Revenue: ₹{total_revenue:,.2f}")
 
     # Step 4: Validation & filtering (Q2)
     filtered_records, invalid_count, summary = validate_and_filter(
