@@ -11,6 +11,8 @@ from utils.api_handler import (
     enrich_sales_data,
     save_enriched_data
 )
+from utils.report_generator import generate_sales_report
+
 
 def main():
     # Step 1: Read raw sales file (Q1)
@@ -44,6 +46,11 @@ def main():
     # Step 6: Enrich sales data & save output (Q4)
     enriched_transactions = enrich_sales_data(valid_records, product_mapping)
     save_enriched_data(enriched_transactions)
+
+    # Step 7: Generate comprehensive sales report (Q5)
+    generate_sales_report(valid_records, enriched_transactions)
+    print("Sales report generated at output/sales_report.txt")
+
 
 if __name__ == "__main__":
     main()
