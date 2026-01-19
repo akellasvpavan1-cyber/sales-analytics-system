@@ -5,9 +5,15 @@ from utils.data_processor import (
     validate_and_filter,
     calculate_total_revenue
 )
+from utils.api_handler import (
+    fetch_all_products,
+    create_product_mapping,
+    enrich_sales_data,
+    save_enriched_data
+)
 
 def main():
-    # Step 1: Read raw file
+    # Step 1: Read raw sales file (Q1)
     file_path = "data/sales_data.txt"
     lines = read_sales_file(file_path)
 
@@ -17,7 +23,7 @@ def main():
     # Step 3: Analytics (Q1 bonus)
     analyze_revenue_by_region(valid_records)
 
-    # Optional: Total revenue (Q3 demo)
+    # Optional: Total revenue (Q3 utility demo)
     total_revenue = calculate_total_revenue(valid_records)
     print(f"\nTotal Revenue: ₹{total_revenue:,.2f}")
 
@@ -30,6 +36,14 @@ def main():
 
     print("\nFilter Summary:")
     print(summary)
+
+    # Step 5: Fetch API data (Q4)
+    api_products = fetch_all_products()
+    product_mapping = create_product_mapping(api_products)
+
+    # Step 6: Enrich sales data & save output (Q4)
+    enriched_transactions = enrich_sales_data(valid_records, product_mapping)
+    save_enriched_data(enriched_transactions)
 
 if __name__ == "__main__":
     main()
