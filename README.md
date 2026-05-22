@@ -1,177 +1,85 @@
-Sales Analytics System
-Overview
+# Sales Intelligence Workflow Engine
 
-This repository contains an end-to-end Python-based Sales Analytics System.
-The application demonstrates structured data handling, validation, analytics, API integration, enrichment, and report generation using a clean, modular design.
+A modular Python-based commercial intelligence application designed to transform fragmented transactional sales data into structured decision support for business users.
 
-The project strictly follows separation of concerns, with main.py acting as the orchestration layer and all business logic implemented within reusable utility modules.
+## Product Thesis
 
-In addition to the core requirements, the solution includes bonus analytical components to provide deeper business insights.
+Customer-facing and commercial teams often operate with incomplete, inconsistent, or low-quality transactional data that slows decision-making and reduces commercial visibility.
 
-Project Structure
+This project explores how internal workflow tooling can improve commercial intelligence through automated data normalization, validation, analytics generation, external enrichment, and resilient reporting workflows.
+
+Rather than functioning as a one-off analytics script, the system is intentionally designed as a workflow-oriented internal product with modular architecture, failure resilience, and extensibility.
+
+---
+
+## Core Product Capabilities
+
+### Commercial Intelligence Generation
+Transforms raw sales transaction data into actionable business insights including:
+
+- total revenue analysis
+- regional performance breakdowns
+- product-level revenue contribution
+- customer revenue segmentation
+- transaction trend analysis
+- average transaction value analysis
+- peak sales day identification
+- low-performing product detection
+
+---
+
+### Data Quality & Validation Layer
+Implements resilient preprocessing and validation workflows:
+
+- malformed record detection
+- numeric normalization and cleaning
+- quantity / pricing validation
+- structured processing summaries
+- filter-aware data handling
+
+---
+
+### External Enrichment Workflow
+Simulates production-style commercial data enrichment through API integration:
+
+- public product metadata retrieval
+- retry logic and timeout resilience
+- efficient product ID mapping
+- graceful degradation on API failure
+
+Enriched attributes include:
+
+- product title
+- category
+- brand
+- rating metadata
+
+---
+
+### Reporting & Decision Support
+Generates structured business-facing outputs including:
+
+- executive summaries
+- commercial performance reporting
+- product intelligence
+- customer insights
+- operational trend reporting
+- enrichment transparency
+
+---
+
+## Product Architecture
+
+Designed using modular application architecture principles.
+
+```text
 sales-analytics-system/
-
 ├── main.py
 ├── requirements.txt
-├── README.md
-│
+├── utils/
+│   ├── file_handler.py
+│   ├── data_processor.py
+│   ├── api_handler.py
+│   └── report_generator.py
 ├── data/
-│   ├── sales_data.txt
-│   └── enriched_sales_data.txt
-│
-├── output/
-│   └── sales_report.txt
-│
-└── utils/
-    ├── __init__.py
-    ├── file_handler.py
-    ├── data_processor.py
-    ├── api_handler.py
-    └── report_generator.py
-
-Features Implemented
-1. File Handling and Preprocessing
-
-Reads sales data from a text file with encoding safety
-
-Handles malformed rows and inconsistent formatting
-
-Cleans numeric fields containing commas
-
-Converts data to appropriate types
-
-Prints a clear summary of total, invalid, and valid records
-
-2. Data Validation and Filtering
-
-Applies validation rules on quantity and pricing
-
-Supports optional filtering by region and transaction amount
-
-Outputs a structured validation and filter summary
-
-3. Core Sales Analytics
-
-Total revenue calculation
-
-Region-wise revenue analysis
-
-Product-level sales aggregation
-
-Customer-level revenue analysis
-
-Date-based transaction trends
-
-4. Bonus Analytics (Additional Insights)
-
-Peak sales day identification
-
-Low-performing product detection using quantity thresholds
-
-Average transaction value analysis by region
-
-Reuse of analytical outputs inside the final report
-
-5. API Integration and Data Enrichment
-
-Fetches product metadata from a public API
-
-Implements retry logic and timeout handling
-
-Creates an efficient product ID mapping
-
-Enriches sales transactions with:
-
-Product title
-
-Category
-
-Brand
-
-Rating
-
-Gracefully handles missing or unavailable API data
-
-Saves enriched output to a separate data file
-
-6. Report Generation
-
-Generates a comprehensive, formatted text report containing:
-
-Header with generation timestamp
-
-Overall sales summary
-
-Region-wise performance table
-
-Top products and customers
-
-Daily sales trends
-
-Product performance analysis
-
-API enrichment summary
-
-7. Main Application Flow
-
-Centralized execution via main.py
-
-No business logic inside the main script
-
-Sequential execution of all processing stages
-
-End-to-end execution without crashes, even on API failure
-
-How to Run the Project
-Prerequisites
-
-Python 3.9 or higher
-
-Internet access (required for API enrichment)
-
-Setup and Execution
-pip install -r requirements.txt
-python main.py
-
-Output Files
-data/enriched_sales_data.txt
-
-Contains sales transactions enriched with external product metadata.
-
-output/sales_report.txt
-
-Contains the final formatted sales analytics report with all required sections.
-
-Dependencies
-
-The project uses the following external library:
-
-requests — for API integration
-
-All dependencies are listed in requirements.txt.
-
-Design Notes
-
-Business logic is fully modularized under the utils directory
-
-main.py is used strictly for orchestration
-
-Defensive programming practices are applied throughout
-
-API failures do not break the execution flow
-
-The structure is optimized for readability, evaluation, and extensibility
-
-Status
-
-All required assignment sections are implemented
-
-Bonus analytics are included and integrated
-
-The application runs end-to-end successfully
-
-All required output files are generated correctly
-
-Author
-
-Pavan Akella
+└── output/
